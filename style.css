@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(26, 240, 26); 
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfM2H0E9LjY-XNe-yo3e_jdOSB8ksHOG6DzI_5P7V2eYVsx6O7);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#table {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+    margin: 75px;
+    width: 95%;
+    color: white;
+}
+
+#dealer-hand {
+    width: 70%;
+    height: 200px;
+    background-color: rgb(137, 230, 137);
+}
+
+#dealer-hand img {
+    margin: 15px;
+    height: 80%;
+}
+
+#player-hand {
+    width: 70%;
+    height: 200px;
+    background-color: rgb(137, 230, 137);
+    
+}
+
+#player-hand img {
+    margin: 15px;
+    height: 80%;
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+    margin: 30px;
+}
+
+.buttons button {
+    margin: 10px;
+    height: 25px;
+    width: auto;
+    border-radius: 12px;
+}
