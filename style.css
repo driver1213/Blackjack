@@ -15,6 +15,13 @@ body{
     color: white;
 }
 
+#dealer-points{
+    width: 50%;
+    height: 40px;
+    color: white;
+    
+}
+
 #dealer-hand {
     width: 70%;
     height: 200px;
@@ -24,6 +31,13 @@ body{
 #dealer-hand img {
     margin: 15px;
     height: 80%;
+}
+
+#player-points{
+    width: 50%;
+    height: 40px;
+    color: white;
+    
 }
 
 #player-hand {

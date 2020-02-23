@@ -1,10 +1,11 @@
 let cards = []
 let playerHand = []
 let dealerHand = []
-let oldCard = []
 let newCard = []
 let playerPoints = 0
 let dealerPoints = 0
+let pAceCount = 0
+let dAceCount = 0
 let suits = ["S", "H", "D", "C"];
 let values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let deck = [];
@@ -12,18 +13,34 @@ imageUrl = "";
 
 let dealerContainer = document.getElementById('dealer-hand');
 let playerContainer = document.getElementById('player-hand');
+let dealerPointContainer = document.getElementById('dealer-points');
+let playerPointContainer = document.getElementById('player-points');
+
 
 
 suits.forEach(function(suit){
     values.forEach(function(value){
         imageUrl = "JPEG/" + value + suit + ".jpg";
+        if (value=="J"||value=="Q"||value=="K"){
+            value=10;
+        }
+
+        else if (value=="A"){
+            value=11;
+        }
+        else{
+            value=value;
+        };  
+        console.log(value);
+
         let card = { url: imageUrl, value: value }
-        
         deck.push(card);
 
     })
 })
 console.log(deck)
+
+
 
 
 function shuffleArray(array) {
@@ -35,7 +52,6 @@ function shuffleArray(array) {
     }
     return array;
 }
-
 
 
 
@@ -57,7 +73,7 @@ function dealCards(player){
         playerHand.push(card)
         console.log('player')
     }
-    limitOp = true
+    
 
 }
 
@@ -65,35 +81,6 @@ function dealCards(player){
 
 
 
-// document.getElementById("dealer-hand").addEventListener('click', function(e){
-
-// })
-
-// document.getElementById("player-hand").addEventListener('click', function(e){
-
-    
-// })
-
-document.getElementById("deal-button").addEventListener('click', function(e){
-    
-    dealCards("dealer-hand")
-    dealCards("player-hand")
-    dealCards("dealer-hand")
-    dealCards("player-hand")
-    
-
-})
-
-document.getElementById("hit-button").addEventListener('click', function(e){
-    
-    dealCards("player-hand")
-    
-})
-
-document.getElementById("stand-button").addEventListener('click', function(e){
-
-    
-})
 
 function calculatePoints(player, hand){
     let handValue = 0;
@@ -104,9 +91,81 @@ function calculatePoints(player, hand){
         handValue += hand[i].value
     }
 
-    playerPoints = handValue
-    // add handvalue to player's total score
+    playerPoints = handValue // add handvalue to player's total score
+    
 }
+console.log(calculatePoints)
+
+
+
+
+
+
+
+
+if(newCard.value == 11){ //count Aces
+    player.pAceCount++;     
+
+
+player.playerPoints = player.value + player.playerPoints;
+
+if((player.playerPoints>21) && (player.pAceCount>0)){
+    player.playerPoints = player.playerPoints-10;
+    player.pAceCount = player.pAceCount -1;
+}
+
+else if(playerPoints>21){
+    player.playerPointContainer.textContent = player.playerPoints + " Over 21!! You Lose!!";    
+}
+else if(playerPoints==21){
+    player.playerPointContainer.textContent="You got 21! You Win!"
+}
+else{
+    player.playerPointContainer.textContent= player.playerPoints+" Points";
+}
+}
+
+
+
+// document.getElementById("dealer-hand").addEventListener('click', function(e){
+    
+// })
+
+// document.getElementById("player-hand").addEventListener('click', function(e){
+    
+    
+// })
+
+document.getElementById("deal-button").addEventListener('click', function(e){
+    
+    dealCards("dealer-hand")
+    dealCards("player-hand")
+    dealCards("dealer-hand")
+    dealCards("player-hand")
+    calculatePoints("player-points")
+
+})
+
+document.getElementById("hit-button").addEventListener('click', function(e){
+    
+    dealCards("player-hand")
+    calculatePoints("player-points")
+})
+
+document.getElementById("stand-button").addEventListener('click', function(e){
+
+    
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
